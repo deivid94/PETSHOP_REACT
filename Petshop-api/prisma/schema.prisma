@@ -10,5 +10,32 @@ generator client {
 
 datasource db {
   provider = "sqlite"
+ 
+}
+
+model User {
+  clientid Int @id @default(autoincrement())
+  name String?
+  phone Int
+  email String
+  adress String
+
+}
+
+model Pet {
+  id Int @id @default(autoincrement())
+  name String?
+  species String?
+  clientId Int
+  User clientid @relation( fields: [clientId], references: [id])
   
+
+}
+
+model Schedule {
+  id Int @id @default(autoincrement())
+  date DateTime
+  service String
+  
+
 }
