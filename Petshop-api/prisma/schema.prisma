@@ -12,3 +12,36 @@ datasource db {
   provider = "sqlite"
   
 }
+
+model User {
+  clientId Int @id @default(autoincrement())
+  name String
+  lastname String
+  phone Int
+  email String
+  address String
+  pets Pet[]
+ 
+}
+
+model Pet {
+  petId Int @id @default(autoincrement())
+  name String?
+  species String?
+  clientId Int
+  schedules Schedule[]
+  user User @relation(fields: [clientId], references: [clientId])
+
+
+}
+
+model Schedule {
+  id Int @id @default(autoincrement())
+  date DateTime
+  service String
+  createdAt DateTime @default(now())
+  petId Int
+  pet Pet @relation(fields: [petId], references: [petId])
+  
+
+}
