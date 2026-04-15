@@ -4,7 +4,7 @@
   "main": "./src/server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx  src/server.ts"
   },
   "keywords": [],
   "author": "Deivid Martins de Olveira",

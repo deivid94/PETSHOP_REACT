@@ -10,25 +10,28 @@ generator client {
 
 datasource db {
   provider = "sqlite"
- 
+  
 }
 
 model User {
-  clientid Int @id @default(autoincrement())
-  name String?
+  clientId Int @id @default(autoincrement())
+  name String
+  lastname String
   phone Int
   email String
-  adress String
-
+  address String
+  pets Pet[]
+ 
 }
 
 model Pet {
-  id Int @id @default(autoincrement())
+  petId Int @id @default(autoincrement())
   name String?
   species String?
   clientId Int
-  User clientid @relation( fields: [clientId], references: [id])
-  
+  schedules Schedule[]
+  user User @relation(fields: [clientId], references: [clientId])
+
 
 }
 
@@ -36,6 +39,9 @@ model Schedule {
   id Int @id @default(autoincrement())
   date DateTime
   service String
+  createdAt DateTime @default(now())
+  petId Int
+  pet Pet @relation(fields: [petId], references: [petId])
   
 
 }
