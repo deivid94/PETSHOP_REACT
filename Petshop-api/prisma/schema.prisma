@@ -27,44 +27,44 @@ enum Species {
 }
 
 model User {
-  clientId Int @id @default(autoincrement())
+  clientId String @id @default(uuid())
   name String
   lastname String
   phone Int
   email String
   address String
   pets Pet[]
+  @@map("users")
  
 }
 
 model Pet {
-  petId Int @id @default(autoincrement())
+  petId String @id @default(uuid())
   name String?
   species Species @default(CACHORRO)
-  clientId Int
+  clientId String
   schedules Schedule[]
   user User @relation(fields: [clientId], references: [clientId])
-
+@@map("pets")
 
 }
 
 model Schedule {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
   date DateTime
   createdAt DateTime @default(now())
-  petId Int
+  petId String
   pet Pet @relation(fields: [petId], references: [petId])
   services Service []
   status Status @default(PENDING)
-  
-
+  @@map("agendamentos")
 }
 
 model Service {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
   name String
   price Float
   schedules Schedule[]
-  
+  @@map("servicos")
 }
 
