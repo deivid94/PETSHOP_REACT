@@ -10,8 +10,9 @@ generator client {
 
 datasource db {
   provider = "sqlite"
+  url = env("DATABASE_URL")
   
-}
+  }
 
 enum Status {
   PENDING
@@ -30,7 +31,7 @@ model User {
   clientId String @id @default(uuid())
   name String
   lastname String
-  phone Int
+  phone String
   email String
   address String
   pets Pet[]
