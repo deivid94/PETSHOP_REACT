@@ -1,11 +1,12 @@
-import express from 'express'
+import express, { Router } from 'express'
+import userRouter from './routes/user.routes.js'
 
 const app = express()
 app.use (express.json())
+app.use(userRouter,)
 
-app.get('/healthcheck', (req,res)=> {
-    return res.json ({message:"esta funcionando"})
-});
+
+
 
 app.listen(3333, ()=> {
 
